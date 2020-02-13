@@ -32,7 +32,7 @@ class HomeViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Division", for: indexPath)
         
         cell.textLabel?.text = divisions[indexPath.row].code
-        cell.accessoryType = .checkmark
+        cell.accessoryType = .none
         return cell
     }
     
@@ -59,6 +59,18 @@ class HomeViewController: UITableViewController {
        
 
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let allPresent = UIContextualAction(style: .normal, title: "All Present") { action, view, completionHandler in
+            let division = self.divisions[indexPath.row]
+            let absence = Absence(date:self.currentDate, present: division.students)
+            division.absences.append(absence)
+            completionHandler(true)
+            
+            
+        }
+        return UISwipeActionsConfiguration(actions: [allPresent])
     }
     
     func addDummyData() {

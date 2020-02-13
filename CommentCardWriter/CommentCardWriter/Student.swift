@@ -7,3 +7,31 @@
 //
 
 import Foundation
+
+class Student {
+    
+    let forename: String
+    let surname: String
+    let block: String
+    let numOfSubs: Int
+    var studentComments: [Comment] = []
+
+
+    init(forename: String, surname: String, block: String, numOfSubs: Int){
+    
+        self.forename = forename
+        self.surname = surname
+        self.block = block
+        self.numOfSubs = numOfSubs
+        
+        
+    }
+    
+    
+}
+    
+    
+    
+    
+    
+
